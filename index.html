@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2B2D42">
+  <meta name="description" content="Intranet corporativa de ECOFLY: documentación, noticias, eventos y recursos internos.">
+  <title>ECOFLY | Intranet corporativa</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#inicio" aria-label="ECOFLY, inicio"><img src="assets/ecofly-logo.jpg" alt="Logotipo ECOFLY"><span>INTRANET <small>ESPACIO DE EQUIPO</small></span></a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a class="nav-link active" href="#inicio"><span>⌂</span> Inicio</a>
+      <a class="nav-link" href="#empresa"><span>◈</span> Quiénes somos</a>
+      <a class="nav-link" href="#documentacion"><span>▤</span> Documentación</a>
+      <a class="nav-link" href="#equipo"><span>♙</span> Directorio del equipo</a>
+      <a class="nav-link" href="#eventos"><span>▦</span> Calendario y eventos</a>
+      <a class="nav-link" href="#noticias"><span>▣</span> Noticias y avisos</a>
+      <a class="nav-link" href="#ayuda"><span>✉</span> Contacto y ayuda</a>
+    </nav>
+    <div class="sidebar-bottom"><span class="status-dot"></span><span>Espacio interno ECOFLY</span><small>Versión inicial · Demo</small></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <div class="breadcrumb">ECOFLY <span>/</span> <strong id="currentPage">Inicio</strong></div>
+      <div class="top-actions"><span class="date-label" id="todayLabel"></span><a class="profile-chip" href="#equipo"><span class="avatar">E</span><span>Equipo ECOFLY</span></a></div>
+    </header>
+
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="green-dot"></span> ESPACIO DE TRABAJO INTERNO</span>
+        <h1>La innovación crece<br>cuando <em>trabajamos juntos.</em></h1>
+        <p>Bienvenido al espacio interno de ECOFLY. Aquí encontrarás los documentos, avisos y recursos que necesitamos para avanzar en equipo.</p>
+        <div class="hero-buttons"><a class="btn btn-green" href="#documentacion">Explorar documentos <span>↗</span></a><a class="btn btn-ghost" href="#empresa">Conocer ECOFLY</a></div>
+      </div>
+      <div class="hero-art" aria-label="Imagen corporativa ECOFLY"><div class="art-circle circle-one"></div><div class="art-circle circle-two"></div><div class="art-card"><img src="assets/ecofly-logo.jpg" alt="Logotipo ECOFLY"><div class="art-line"></div><p>Tecnología sostenible<br>al servicio de la agricultura</p></div><span class="art-leaf">✳</span><span class="art-label">PRECISIÓN · NATURALEZA · FUTURO</span></div>
+    </section>
+
+    <section class="quick-grid" aria-label="Accesos rápidos">
+      <a class="quick-card" href="#documentacion"><span class="quick-icon icon-green">▤</span><span><strong>Documentación</strong><small>Manuales y protocolos</small></span><b>↗</b></a>
+      <a class="quick-card" href="#eventos"><span class="quick-icon icon-blue">▦</span><span><strong>Eventos</strong><small>Reuniones y formación</small></span><b>↗</b></a>
+      <a class="quick-card" href="#equipo"><span class="quick-icon icon-dark">♙</span><span><strong>Equipo</strong><small>Directorio profesional</small></span><b>↗</b></a>
+      <a class="quick-card" href="https://docs.google.com/spreadsheets/d/1VX0uD2L-dOeaZNPIBpVa5tbTLBoM5yFb/edit?usp=drive_link&ouid=114969459828766254413&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer"><span class="quick-icon icon-blue">▦</span><span><strong>Base de datos</strong><small>Abrir hoja de cálculo</small></span><b>↗</b></a>
+      <a class="quick-card" href="#ayuda"><span class="quick-icon icon-pale">✉</span><span><strong>Ayuda interna</strong><small>Consultas y sugerencias</small></span><b>↗</b></a>
+    </section>
+
+    <section class="section-block" id="noticias">
+      <div class="section-heading"><div><span class="eyebrow">AL DÍA EN ECOFLY</span><h2>Noticias y avisos</h2></div><span class="section-note">Comunicados internos</span></div>
+      <div class="news-grid">
+        <article class="news-card featured-news"><div class="news-image attached-news-image"><img src="assets/foto-noticias-ecofly.jpg" alt="Logotipo ECOFLY adjuntado por el usuario"><span class="news-tag">SOSTENIBILIDAD</span></div><div class="news-content"><div class="news-meta">COMUNICADO · AVISO GENERAL</div><h3>La sostenibilidad empieza en nuestro día a día</h3><p>Recordemos reducir el consumo de papel, separar los residuos y priorizar el mantenimiento y la reparación de los equipos.</p><a href="#empresa" class="text-link">Nuestros compromisos <span>→</span></a></div></article>
+        <article class="news-card"><div class="news-content"><div class="news-meta"><span class="mini-dot blue"></span> BIENVENIDA</div><h3>Una incorporación bien acompañada</h3><p>El proceso de bienvenida incluye la presentación del equipo, las funciones del puesto, los canales internos y la formación inicial en seguridad.</p><a href="https://docs.google.com/document/d/17MJf8YMxFru19S4mNvDyC1hn8z-0WBE51kP6Et8vDIw/edit?usp=drive_link" target="_blank" rel="noopener noreferrer" class="text-link">Ver protocolo <span>→</span></a></div><div class="news-footer">PERSONAS Y EQUIPO <span>01</span></div></article>
+        <article class="news-card"><div class="news-content"><div class="news-meta"><span class="mini-dot green"></span> RECORDATORIO</div><h3>Seguridad antes de cada trabajo</h3><p>Antes de las tareas de campo o taller, revisa las instrucciones aplicables y utiliza los equipos de protección individual necesarios.</p><a href="https://docs.google.com/document/d/17MJf8YMxFru19S4mNvDyC1hn8z-0WBE51kP6Et8vDIw/edit?usp=drive_link" target="_blank" rel="noopener noreferrer" class="text-link">Consultar PRL <span>→</span></a></div><div class="news-footer">PREVENCIÓN Y SEGURIDAD <span>02</span></div></article>
+      </div>
+    </section>
+
+    <section class="section-block split-section" id="documentacion">
+      <div class="section-heading"><div><span class="eyebrow">TODO EN SU SITIO</span><h2>Documentación interna</h2><p class="section-description">Consulta los principales manuales y recursos de trabajo.</p></div></div>
+      <label class="search-box"><span>⌕</span><input id="docSearch" type="search" placeholder="Buscar un documento…" aria-label="Buscar documentos"><kbd>Buscar</kbd></label>
+      <div class="filter-row" role="group" aria-label="Filtrar documentación"><button class="filter-btn selected" data-filter="all">Todos</button><button class="filter-btn" data-filter="protocolos">Protocolos</button><button class="filter-btn" data-filter="personas">Personas</button><button class="filter-btn" data-filter="seguridad">Seguridad</button><button class="filter-btn" data-filter="eventos">Eventos</button></div>
+      <div class="docs-grid" id="docsGrid">
+        <article class="doc-card" data-category="protocolos" data-search="manual protocolo empresarial comportamiento dirección normas"><div class="doc-icon green-doc">▤</div><div class="doc-info"><span class="doc-type">MANUAL</span><h3>Protocolo empresarial</h3><p>Normas de comportamiento, comunicación y actuación profesional.</p><span class="file-state">Contenido del proyecto</span></div><a class="doc-action" href="https://docs.google.com/document/d/17MJf8YMxFru19S4mNvDyC1hn8z-0WBE51kP6Et8vDIw/edit?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Abrir Protocolo empresarial">↗</a></article>
+        <article class="doc-card" data-category="seguridad" data-search="prevención riesgos laborales prl equipos protección campo taller"><div class="doc-icon blue-doc">＋</div><div class="doc-info"><span class="doc-type">SEGURIDAD</span><h3>Prevención de riesgos (PRL)</h3><p>Referencia para las tareas de campo, taller y manejo de equipos.</p><span class="file-state pending">Archivo por vincular</span></div><a class="doc-action" href="https://docs.google.com/document/d/17MJf8YMxFru19S4mNvDyC1hn8z-0WBE51kP6Et8vDIw/edit?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Abrir Prevención de riesgos">↗</a></article>
+        <article class="doc-card" data-category="personas" data-search="acogida incorporación nuevos trabajadores formación bienvenida"><div class="doc-icon dark-doc">♙</div><div class="doc-info"><span class="doc-type">PERSONAS</span><h3>Acogida y formación</h3><p>Pasos para dar la bienvenida y acompañar a nuevas incorporaciones.</p><span class="file-state">Contenido del proyecto</span></div><a class="doc-action" href="https://docs.google.com/document/d/17MJf8YMxFru19S4mNvDyC1hn8z-0WBE51kP6Et8vDIw/edit?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Abrir Acogida y formación">↗</a></article>
+        <article class="doc-card" data-category="protocolos" data-search="atención cliente comunicación profesional correo reclamaciones"><div class="doc-icon pale-doc">✉</div><div class="doc-info"><span class="doc-type">COMUNICACIÓN</span><h3>Atención al cliente</h3><p>Orientaciones para ofrecer un trato claro, cercano y profesional.</p><span class="file-state">Contenido del proyecto</span></div><a class="doc-action" href="https://docs.google.com/document/d/17MJf8YMxFru19S4mNvDyC1hn8z-0WBE51kP6Et8vDIw/edit?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Abrir Atención al cliente">↗</a></article>
+        <article class="doc-card" data-category="personas" data-search="igualdad no discriminación conflictos responsabilidad social corporativa rsc"><div class="doc-icon green-doc">♡</div><div class="doc-info"><span class="doc-type">CULTURA ECOFLY</span><h3>Igualdad y RSC</h3><p>Compromisos con las personas, el entorno y la responsabilidad ambiental.</p><span class="file-state">Contenido del proyecto</span></div><a class="doc-action" href="https://docs.google.com/document/d/17MJf8YMxFru19S4mNvDyC1hn8z-0WBE51kP6Et8vDIw/edit?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Abrir Igualdad y RSC">↗</a></article>
+        <article class="doc-card" data-category="eventos" data-search="organización eventos reuniones presupuestos protocolo evento interno externo"><div class="doc-icon blue-doc">▦</div><div class="doc-info"><span class="doc-type">ORGANIZACIÓN</span><h3>Organización de eventos</h3><p>Planificación, medios, horarios y protocolo de eventos corporativos.</p><span class="file-state pending">Archivo por vincular</span></div><a class="doc-action" href="https://docs.google.com/document/d/17MJf8YMxFru19S4mNvDyC1hn8z-0WBE51kP6Et8vDIw/edit?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Abrir Organización de eventos">↗</a></article>
+      </div>
+      <p class="empty-state" id="emptyDocs" hidden>No hay documentos que coincidan con la búsqueda.</p>
+      <div class="note-banner"><span class="note-symbol">i</span><p><strong>Documentación:</strong> todos los apartados de esta sección abren el documento compartido de Google Docs. Si quieres que cada apartado abra un archivo distinto, habrá que asignar su enlace específico.</p></div>
+    </section>
+
+    <section class="section-block company-section" id="empresa">
+      <div class="company-intro"><span class="eyebrow">QUIÉNES SOMOS</span><h2>Tecnología que cuida<br><em>lo que nos alimenta.</em></h2><p>ECOFLY combina drones, sensores y análisis de datos para ayudar a los agricultores a cuidar los cultivos con mayor precisión y utilizar los recursos de forma responsable.</p></div>
+      <div class="values-grid"><article><span>01</span><h3>Innovación aplicada</h3><p>Tecnología orientada a resolver necesidades reales del campo.</p></article><article><span>02</span><h3>Sostenibilidad</h3><p>Uso eficiente del agua, reducción de desperdicios y reparación de equipos.</p></article><article><span>03</span><h3>Precisión y calidad</h3><p>Soluciones fiables y aplicación localizada de los recursos agrícolas.</p></article><article><span>04</span><h3>Compromiso agrícola</h3><p>Cercanía y acompañamiento a agricultores y profesionales del sector.</p></article></div>
+      <div class="mission-row"><div><span class="eyebrow">NUESTRA MISIÓN</span><p>Facilitar una agricultura más eficiente mediante tecnología de precisión y una gestión responsable de los recursos naturales.</p></div><div><span class="eyebrow">NUESTRA VISIÓN</span><p>Ser un referente en soluciones tecnológicas sostenibles para la agricultura y la conservación de los ecosistemas.</p></div></div>
+    </section>
+
+    <section class="section-block team-events-grid">
+      <div id="equipo" class="panel-card"><div class="section-heading compact"><div><span class="eyebrow">PERSONAS</span><h2>Directorio del equipo</h2></div><span class="round-icon">♙</span></div><p>Consulta aquí los contactos profesionales y responsables de cada área.</p><div class="team-placeholder"><div class="avatar avatar-large">E</div><div><strong>Directorio pendiente de conexión</strong><small>La base Excel incluye información de personal. Por privacidad, no se muestran aquí nombres, salarios ni otros datos individuales.</small></div></div><a class="btn btn-outline" href="https://docs.google.com/spreadsheets/d/1VX0uD2L-dOeaZNPIBpVa5tbTLBoM5yFb/edit?usp=drive_link&ouid=114969459828766254413&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">Abrir base de datos <span>→</span></a></div>
+      <div id="eventos" class="panel-card events-panel"><div class="section-heading compact"><div><span class="eyebrow">AGENDA</span><h2>Próximos eventos</h2></div><span class="round-icon blue-round">▦</span></div><div class="event-item"><div class="event-date"><strong>—</strong><span>FECHA</span></div><div><span class="event-label">JORNADA INTERNA</span><h3>AgroTech Conecta</h3><p>Jornada de cohesión y trabajo en equipo. Fecha y horario pendientes de confirmar.</p></div></div><div class="event-item"><div class="event-date event-date-blue"><strong>—</strong><span>FECHA</span></div><div><span class="event-label">FORMACIÓN</span><h3>Formación y seguridad</h3><p>Espacio para publicar futuras sesiones de formación y prevención.</p></div></div><button class="btn btn-outline" data-doc="Calendario de eventos">Configurar calendario <span>→</span></button></div>
+    </section>
+
+    <section class="help-section" id="ayuda"><div class="help-copy"><span class="eyebrow">¿NECESITAS UNA MANO?</span><h2>Estamos aquí<br>para ayudarte.</h2><p>Utiliza este formulario como maqueta para consultas internas. Para recibir mensajes, debe conectarse a Google Forms u otro servicio.</p><div class="help-contact"><span class="help-icon">✉</span><span><strong>Canal de consultas</strong><small>Documentación · Personas · PRL · Informática</small></span></div></div><form id="helpForm" class="help-form"><label for="helpSubject">Asunto</label><input id="helpSubject" name="subject" required placeholder="¿En qué podemos ayudarte?"><label for="helpCategory">Categoría</label><select id="helpCategory" name="category"><option>Documentación</option><option>Personas y equipo</option><option>Prevención de riesgos (PRL)</option><option>Informática</option><option>Eventos</option><option>Otra consulta</option></select><label for="helpMessage">Mensaje</label><textarea id="helpMessage" name="message" rows="3" required placeholder="Escribe tu consulta…"></textarea><button class="btn btn-green" type="submit">Preparar consulta <span>→</span></button><p class="form-hint" id="formHint">Demostración: el formulario no envía ni guarda datos.</p></form></section>
+
+    <footer class="footer"><div class="footer-brand"><img src="assets/ecofly-logo.jpg" alt="ECOFLY"><span>INTRANET ECOFLY</span></div><p>Tecnología sostenible al servicio de la agricultura.</p><span class="footer-right">Espacio interno · Versión inicial</span></footer>
+  </main>
+
+  <dialog id="infoDialog" class="info-dialog"><button class="dialog-close" id="dialogClose" aria-label="Cerrar">×</button><span class="eyebrow">INTRANET ECOFLY</span><h2 id="dialogTitle">Información</h2><p id="dialogText"></p><div class="dialog-actions"><button class="btn btn-green" id="dialogOk">Entendido</button></div></dialog>
+  <script src="script.js"></script>
+</body></html>
