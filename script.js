@@ -1,6 +1,6 @@
 
-
 const todayLabel = document.getElementById('todayLabel');
+
 if (todayLabel) {
   todayLabel.textContent = new Intl.DateTimeFormat('es-ES', {
     weekday: 'short',
@@ -25,6 +25,7 @@ const pageNames = {
 function setActive(id) {
   navLinks.forEach(a => {
     const active = a.getAttribute('href') === '#' + id;
+
     a.classList.toggle('active', active);
 
     if (active && currentPage) {
@@ -36,8 +37,15 @@ function setActive(id) {
 navLinks.forEach(a => {
   a.addEventListener('click', () => {
     setActive(a.hash.slice(1));
-    document.getElementById('sidebar').classList.remove('open');
-    document.getElementById('menuToggle').setAttribute('aria-expanded', 'false');
+
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menuToggle');
+
+    if (sidebar) sidebar.classList.remove('open');
+
+    if (menuToggle) {
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
   });
 });
 
@@ -45,13 +53,18 @@ const menuToggle = document.getElementById('menuToggle');
 
 if (menuToggle) {
   menuToggle.addEventListener('click', () => {
-    const opened = document.getElementById('sidebar').classList.toggle('open');
+    const sidebar = document.getElementById('sidebar');
+
+    if (!sidebar) return;
+
+    const opened = sidebar.classList.toggle('open');
     menuToggle.setAttribute('aria-expanded', String(opened));
   });
 }
 
 const docSearch = document.getElementById('docSearch');
 const filterButtons = [...document.querySelectorAll('.filter-btn')];
+
 let selectedFilter = 'all';
 
 function filterDocs() {
@@ -70,13 +83,17 @@ function filterDocs() {
     ).toLocaleLowerCase('es').includes(term);
 
     const show = matchesCategory && matchesTerm;
+
     card.hidden = !show;
 
     if (show) visible++;
   });
 
   const emptyDocs = document.getElementById('emptyDocs');
-  if (emptyDocs) emptyDocs.hidden = visible !== 0;
+
+  if (emptyDocs) {
+    emptyDocs.hidden = visible !== 0;
+  }
 }
 
 if (docSearch) {
@@ -126,23 +143,36 @@ const details = {
 function showDialog(title) {
   if (!dialog) return;
 
-  document.getElementById('dialogTitle').textContent = title;
-  document.getElementById('dialogText').textContent =
-    details[title] ||
-    'Este espacio está preparado para añadir contenido o conectar un recurso corporativo. No hay todavía un archivo o servicio conectado.';
+  const dialogTitle = document.getElementById('dialogTitle');
+  const dialogText = document.getElementById('dialogText');
+
+  if (dialogTitle) dialogTitle.textContent = title;
+
+  if (dialogText) {
+    dialogText.textContent =
+      details[title] ||
+      'Este espacio está preparado para añadir contenido o conectar un recurso corporativo. No hay todavía un archivo o servicio conectado.';
+  }
 
   dialog.showModal();
 }
 
 document.querySelectorAll('[data-doc]').forEach(btn => {
-  btn.addEventListener('click', () => showDialog(btn.dataset.doc));
+  btn.addEventListener('click', () => {
+    showDialog(btn.dataset.doc);
+  });
 });
 
 const dialogClose = document.getElementById('dialogClose');
 const dialogOk = document.getElementById('dialogOk');
 
-if (dialogClose) dialogClose.addEventListener('click', () => dialog.close());
-if (dialogOk) dialogOk.addEventListener('click', () => dialog.close());
+if (dialogClose && dialog) {
+  dialogClose.addEventListener('click', () => dialog.close());
+}
+
+if (dialogOk && dialog) {
+  dialogOk.addEventListener('click', () => dialog.close());
+}
 
 if (dialog) {
   dialog.addEventListener('click', e => {
@@ -150,19 +180,182 @@ if (dialog) {
   });
 }
 
-/* FORMULARIO DE CONSULTAS ECOFLY CON GOOGLE FORMS */
+/* ==================================================
+   FORMULARIO ECOFLY
+   AVISO ANIMADO AL ENVIAR UNA CONSULTA
+   ================================================== */
 
 const ecoflyForm = document.getElementById('ecoflyGoogleForm');
+
 const googleFormsFrame = document.querySelector(
   'iframe[name="googleFormsFrame"]'
 );
+
 const formHint = document.getElementById('formHint');
 
 if (ecoflyForm && googleFormsFrame) {
   let envioIniciado = false;
+  let toastTimer = null;
 
+  // Crear estilos para el aviso animado.
+  const toastStyles = document.createElement('style');
+
+  toastStyles.textContent = `
+    #ecoflyToast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -40%) scale(0.9);
+      z-index: 99999;
+
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      width: max-content;
+      max-width: calc(100vw - 32px);
+      box-sizing: border-box;
+      padding: 22px 28px;
+
+      background: #ffffff;
+      color: #2B2D42;
+      border: 1px solid #e4eadf;
+      border-radius: 18px;
+      box-shadow: 0 18px 60px rgba(43, 45, 66, 0.22);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+
+      font-family: inherit;
+    }
+
+    #ecoflyToast.ecofly-toast-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    #ecoflyToast .ecofly-toast-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+
+      background: #e8f8df;
+      color: #278a00;
+
+      font-size: 30px;
+      font-weight: bold;
+
+      animation: ecoflyPop 0.45s ease both;
+    }
+
+    #ecoflyToast .ecofly-toast-title {
+      margin: 0 0 5px;
+      font-size: 18px;
+      font-weight: 750;
+    }
+
+    #ecoflyToast .ecofly-toast-text {
+      margin: 0;
+      color: #697080;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    @keyframes ecoflyPop {
+      0% {
+        transform: scale(0.4);
+      }
+
+      70% {
+        transform: scale(1.15);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 480px) {
+      #ecoflyToast {
+        gap: 12px;
+        padding: 18px;
+      }
+
+      #ecoflyToast .ecofly-toast-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 25px;
+      }
+
+      #ecoflyToast .ecofly-toast-title {
+        font-size: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #ecoflyToast,
+      #ecoflyToast .ecofly-toast-icon {
+        animation: none;
+        transition: none;
+      }
+    }
+  `;
+
+  document.head.appendChild(toastStyles);
+
+  // Crear el mensaje centrado.
+  const toast = document.createElement('div');
+
+  toast.id = 'ecoflyToast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+
+  toast.innerHTML = `
+    <div class="ecofly-toast-icon" aria-hidden="true">✓</div>
+    <div>
+      <p class="ecofly-toast-title">
+        ¡Consulta enviada correctamente!
+      </p>
+      <p class="ecofly-toast-text">
+        Tu mensaje se ha enviado al equipo de ECOFLY.
+      </p>
+    </div>
+  `;
+
+  document.body.appendChild(toast);
+
+  // Mostrar el aviso durante tres segundos.
+  function mostrarAviso() {
+    if (toastTimer) {
+      clearTimeout(toastTimer);
+    }
+
+    toast.classList.remove('ecofly-toast-visible');
+
+    // Reiniciar la animación si se envían consultas seguidas.
+    void toast.offsetWidth;
+
+    toast.classList.add('ecofly-toast-visible');
+
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('ecofly-toast-visible');
+    }, 3000);
+  }
+
+  // Detectar el envío del formulario.
   ecoflyForm.addEventListener('submit', function () {
-    // El navegador valida los campos obligatorios antes de llegar aquí.
     envioIniciado = true;
 
     if (formHint) {
@@ -171,24 +364,28 @@ if (ecoflyForm && googleFormsFrame) {
     }
   });
 
+  // Mostrar el aviso cuando responde el iframe de Google Forms.
   googleFormsFrame.addEventListener('load', function () {
     if (!envioIniciado) return;
 
     envioIniciado = false;
 
-    alert('Consulta enviada');
+    mostrarAviso();
 
     ecoflyForm.reset();
 
     if (formHint) {
       formHint.textContent =
         'Completa los campos y pulsa «Enviar consulta».';
+
       formHint.style.color = '#278a00';
     }
   });
 }
 
-/* NAVEGACIÓN AUTOMÁTICA ENTRE SECCIONES */
+/* ==================================================
+   NAVEGACIÓN AUTOMÁTICA ENTRE SECCIONES
+   ================================================== */
 
 const sections = [...document.querySelectorAll('main section[id]')];
 
@@ -198,7 +395,9 @@ if ('IntersectionObserver' in window) {
       .filter(e => e.isIntersecting)
       .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-    if (visible) setActive(visible.target.id);
+    if (visible) {
+      setActive(visible.target.id);
+    }
   }, {
     rootMargin: '-20% 0px -65% 0px',
     threshold: [0, 0.2, 0.5]
